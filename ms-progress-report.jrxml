@@ -362,7 +362,7 @@ See comments for more information.
 					<textFieldExpression><![CDATA["Teacher: " + $F{transcript}.getTeacher().getNameView()]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="372" y="11" width="100" height="16" uuid="c4bc66ff-e895-40eb-bb40-9d3abdb872eb">
+					<reportElement x="372" y="11" width="200" height="16" uuid="c4bc66ff-e895-40eb-bb40-9d3abdb872eb">
 						<printWhenExpression><![CDATA[$F{criterion} != null]]></printWhenExpression>
 					</reportElement>
 					<box>
@@ -420,7 +420,7 @@ See comments for more information.
 					<textElement markup="none">
 						<font isBold="true" isItalic="false" pdfFontName="Helvetica-Bold"/>
 					</textElement>
-					<textFieldExpression><![CDATA["Comments- " + $P{semesterString} + " Progress Report:"]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Comments- " + $P{semesterString} + " Progress:"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="0" y="24" width="572" height="24" uuid="aa0176f4-beeb-4269-884f-0815eb5f290e">
