@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ProgressReportSbMs" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0802dfe3-3e41-4229-a93b-a23a3bf65f39">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="context" class="com.x2dev.sis.model.beans.SisDistrictSchoolYearContext" isForPrompting="false"/>
+	<parameter name="semesterString" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="reportDate" class="java.lang.String"/>
+	<parameter name="attendanceSummary1" class="com.x2dev.sis.model.business.MultiStudentAttendanceSummary"/>
+	<parameter name="attendanceSummary2" class="com.x2dev.sis.model.business.MultiStudentAttendanceSummary"/>
+	<parameter name="termNumber" class="java.lang.Integer"/>
+	<parameter name="academicProbationPr1" class="java.util.HashSet"/>
+	<parameter name="academicProbationPr2" class="java.util.HashSet"/>
+	<field name="student" class="com.x2dev.sis.model.beans.SisStudent"/>
+	<field name="transcript" class="com.x2dev.sis.model.beans.Transcript"/>
+	<field name="school" class="com.x2dev.sis.model.beans.SisSchool">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="criterion" class="com.x2dev.sis.model.beans.RubricCriterion"/>
+	<field name="rubric_S1PrStrands1" class="java.lang.String"/>
+	<field name="rubric_S1PrStrands2" class="java.lang.String"/>
+	<field name="S1PrComment1" class="java.lang.String"/>
+	<field name="S1PrComment2" class="java.lang.String"/>
+	<field name="schoolCourse" class="com.x2dev.sis.model.beans.SchoolCourse"/>
+	<field name="courseReportDisplay" class="java.lang.String"/>
+	<field name="S2PrComment1" class="java.lang.String"/>
+	<field name="S2PrComment2" class="java.lang.String"/>
+	<field name="rubric_S2PrStrands1" class="java.lang.String"/>
+	<field name="rubric_S2PrStrands2" class="java.lang.String"/>
+	<group name="student" isStartNewPage="true" footerPosition="ForceAtBottom">
+		<groupExpression><![CDATA[$F{student}]]></groupExpression>
+		<groupHeader>
+			<band height="375">
+				<textField>
+					<reportElement x="0" y="0" width="572" height="34" uuid="5d921c9e-8386-4a39-b362-9cf88b8f4f37"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="18" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{student}.getSchool().getName()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="33" width="572" height="20" uuid="c4ed6b4d-ae74-496d-ab2a-5577e834f44e"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[Semester Progress Report]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="0" y="53" width="572" height="20" uuid="7a5c6bf4-20fb-40a8-b7d8-954c698429c3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{context}.getContextName()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="79" width="34" height="20" uuid="b7bda12d-94e2-497f-9e15-7992cfd94df9"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[Name:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="179" y="79" width="44" height="20" uuid="06bb3131-ae1b-4d5b-8417-d2e2fd728abf"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[Advisory:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="302" y="79" width="35" height="20" uuid="95d41d33-2cd1-4753-aa62-75fc86290a96"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[Grade:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="404" y="79" width="100" height="20" uuid="bf43861a-b175-4bae-9a0f-fdd8cdda53bb"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[Progress Report Date:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="34" y="79" width="145" height="20" uuid="5d3cc743-71b8-4dcc-a329-4f8911d7153e"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{student}.getNameView()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="223" y="79" width="79" height="20" uuid="78ac6301-8a05-4cbf-89a2-3d8c64aa2695"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{student}.getHomeroom()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="337" y="79" width="67" height="20" uuid="858a2090-0f8a-4f75-a211-952c7318377b"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{student}.getGradeLevel()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="504" y="79" width="68" height="20" uuid="685f9890-7fbf-4444-bfe7-64a25d2bf405"/>
+					<box leftPadding="2"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{reportDate}.toString()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="287" y="109" width="285" height="20" uuid="377fe5df-7bef-4680-9663-a0f943f821b8"/>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Grading Scale]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="287" y="129" width="285" height="20" uuid="82013557-0f9b-434f-a275-dcfc75e3518d"/>
+					<box leftPadding="3">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="styled"/>
+					<text><![CDATA[<style isBold='true'>Distinguished (D)</style>- Exceeds expectations]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="287" y="149" width="285" height="20" uuid="3dc72d77-80ac-407b-b927-3ff988e0dda3"/>
+					<box leftPadding="3">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="styled"/>
+					<text><![CDATA[<style isBold='true'>Proficient (P)</style>- Meets expectations
+]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="287" y="169" width="285" height="20" uuid="cd68b7c4-00af-46d1-912f-b86ac99ed596"/>
+					<box leftPadding="3">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="styled"/>
+					<text><![CDATA[<style isBold='true'>Apprentice (A)</style>- Approaches expectations]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="287" y="189" width="285" height="20" uuid="ac391204-03fa-4201-bcdd-4c7358aabff5"/>
+					<box leftPadding="3">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="styled"/>
+					<text><![CDATA[<style isBold='true'>Novice (N)</style>- Beginning expectations
+]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="287" y="209" width="285" height="20" uuid="777a04b5-adcb-46de-b341-d3eb9099afed"/>
+					<box leftPadding="3">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="styled"/>
+					<text><![CDATA[<style isBold='true'>Warning (W)</style>- No evidence/progress towards expectations
+]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="287" y="229" width="285" height="38" uuid="83df4597-acc5-4ea4-941e-da23dfb54b6f"/>
+					<box leftPadding="3">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="styled"/>
+					<text><![CDATA[<style isBold='true'>Ungraded (UG)</style>- Student was not graded this reporting period.
+See comments for more information.
+]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="129" width="85" height="20" backcolor="#CCCCCC" uuid="4c590ba0-55f6-4381-a821-f850e580d5cd"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Attendance]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="85" y="129" width="48" height="20" backcolor="#CCCCCC" uuid="7e3a5114-26b7-4c8c-9154-7e3b4dd8d5c4"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Absent]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="133" y="129" width="46" height="20" backcolor="#CCCCCC" uuid="7aa0a253-e79e-4580-8979-5e7fae09a997"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Tardy]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="179" y="129" width="65" height="20" backcolor="#CCCCCC" uuid="18f2c2df-71cf-488f-b991-96b47b0cc482"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Dismissed]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="0" y="149" width="85" height="20" backcolor="#CCCCCC" uuid="98347424-7099-4112-9ad0-376269d14e09"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Semester 1]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="0" y="169" width="85" height="20" backcolor="#CCCCCC" uuid="7c213dcc-1025-483f-bf12-95c3979d2826"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Semester 2]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Transparent" x="85" y="149" width="48" height="20" backcolor="#CCCCCC" uuid="5e516040-a225-486d-9f48-dc6a372000b0"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{attendanceSummary1}.getAbsences($F{student}.getOid())]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="85" y="169" width="48" height="20" backcolor="#CCCCCC" uuid="314683e4-7786-4ddc-9157-55efb37cc6c4"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{attendanceSummary2}.getAbsences($F{student}.getOid())]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Transparent" x="133" y="149" width="46" height="20" backcolor="#CCCCCC" uuid="5206fd71-c4bc-43f3-9b3f-f2c7283a8e70"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{attendanceSummary1}.getTardies($F{student}.getOid())]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="133" y="169" width="46" height="20" backcolor="#CCCCCC" uuid="576cfd57-0609-4085-92d2-852dd0002823"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{attendanceSummary2}.getTardies($F{student}.getOid())]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Transparent" x="179" y="149" width="65" height="20" backcolor="#CCCCCC" uuid="b8914d09-c8e4-4290-9c9f-a6ac53c08672"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{attendanceSummary1}.getDismissals($F{student}.getOid())]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="179" y="169" width="65" height="20" backcolor="#CCCCCC" uuid="abb7a0ab-e73b-4464-b40d-c6cfe7f0d7bd"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{attendanceSummary2}.getDismissals($F{student}.getOid())]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="274" width="572" height="27" uuid="ee041545-8103-4b86-b708-4b28955a1bb6"/>
+					<text><![CDATA[*Note that grades with a / indicate that a student is performing between levels (i.e. Apprentice/Proficient or A/P indicates a student is performing between those levels.)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="0" y="316" width="572" height="59" uuid="f06238dd-4f33-4f19-a005-9779f51d6792"/>
+					<textElement>
+						<font size="11" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[The purpose of the progress report is to offer students and families information about current performance this semester. If a student currently has a Novice or Warning grade, a comment is also included to provide feedback on steps needed to make improvement before the close of the semester when finalized assessments are issued. ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="98" y="213" width="146" height="20" uuid="af2425e3-1542-4882-8e9f-1ddc127ec58f">
+						<printWhenExpression><![CDATA[$P{academicProbationPr1}.contains($F{student}.getOid()) || $P{academicProbationPr2}.contains($F{student}.getOid())]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
+					<textFieldExpression><![CDATA[($P{academicProbationPr1}.contains($F{student}.getOid())
+? "Academic Probation\n"
+: "")]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="213" width="98" height="20" uuid="67d7686c-0bd0-4970-a5e0-ac5f1257d523">
+						<printWhenExpression><![CDATA[$P{academicProbationPr1}.contains($F{student}.getOid()) || $P{academicProbationPr2}.contains($F{student}.getOid())]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Progress Report #1]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="0" y="301" width="572" height="15" uuid="3b7aed64-72e8-4917-bdac-b37ca071c37d"/>
+					<box bottomPadding="2"/>
+					<textElement markup="none">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($F{student}.getGradeLevel().contains("5") || $F{student}.getGradeLevel().contains("6"))
+? "*For students in 5th and 6th grade- any grade on the report card or progress report of Warning (W) would result in Academic Probation."
+: ($F{student}.getGradeLevel().contains("7") || $F{student}.getGradeLevel().contains("8"))
+  ? "*For students in 7th and 8th grade- any grade on the report card or progress report of Novice (N) or Warning (W) would result in Academic Probation."
+  : "*For students in 5th and 6th grade- any grade on the report card or progress report of Warning (W) would result in Academic Probation.\n"
+     +"*For students in 7th and 8th grade- any grade on the report card or progress report of Novice (N) or Warning (W) would result in Academic Probation."]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="9"/>
+		</groupFooter>
+	</group>
+	<group name="transcript" keepTogether="true">
+		<groupExpression><![CDATA[$F{transcript}]]></groupExpression>
+		<groupHeader>
+			<band height="43">
+				<printWhenExpression><![CDATA[!$F{transcript}.getSchoolCourse().getDescription().equals("Advisory")]]></printWhenExpression>
+				<textField>
+					<reportElement x="0" y="11" width="572" height="16" uuid="5ce6cf8f-e8c9-412e-b1de-baeaedf1d93a"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{courseReportDisplay}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="27" width="572" height="16" uuid="6590c797-9675-46f6-973a-d1fe327ab349"/>
+					<box leftPadding="4">
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textFieldExpression><![CDATA["Teacher: " + $F{transcript}.getTeacher().getNameView()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="372" y="11" width="100" height="16" uuid="c4bc66ff-e895-40eb-bb40-9d3abdb872eb">
+						<printWhenExpression><![CDATA[$F{criterion} != null]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+					<textFieldExpression><![CDATA[$P{semesterString}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="472" y="11" width="100" height="16" uuid="91ff73a6-644f-4fb7-80e4-f17bd8e8a187">
+						<printWhenExpression><![CDATA[$F{criterion} != null]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+					<textFieldExpression><![CDATA[$P{semesterString}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="372" y="27" width="100" height="16" uuid="2c8fd3ef-505d-41e3-9914-d6c140218da9">
+						<printWhenExpression><![CDATA[$F{criterion} != null]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Top"/>
+					<text><![CDATA[Progress 1]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="472" y="27" width="100" height="16" uuid="68421480-9d04-4477-a891-ec630fccbf35">
+						<printWhenExpression><![CDATA[$F{criterion} != null]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Top"/>
+					<text><![CDATA[Progress 2]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="48">
+				<printWhenExpression><![CDATA[$P{termNumber}.intValue() == 1
+? (($F{S1PrComment1} != null && !"".equals($F{S1PrComment1})) || ($F{S1PrComment2} != null  && !"".equals($F{S1PrComment2})))
+: (($F{S2PrComment1} != null && !"".equals($F{S2PrComment1})) || ($F{S2PrComment2} != null && !"".equals($F{S2PrComment2})))]]></printWhenExpression>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="0" y="0" width="572" height="24" uuid="e4195793-4278-4f5d-bf22-a6ea45ab0ba1">
+						<printWhenExpression><![CDATA[$P{termNumber}.intValue() == 1
+? ($F{S1PrComment1} != null && !$F{S1PrComment1}.equals(""))
+: ($F{S2PrComment1} != null && !$F{S2PrComment1}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<box topPadding="3" leftPadding="4" bottomPadding="1">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement markup="styled"/>
+					<textFieldExpression><![CDATA["                                                                 "
++ ($P{termNumber}.intValue() == 1 ? $F{S1PrComment1} : $F{S2PrComment1})]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="0" y="0" width="185" height="24" uuid="bf01d47b-88c5-4729-87ad-46115b8febef">
+						<printWhenExpression><![CDATA[$P{termNumber}.intValue() == 1
+? ($F{S1PrComment1} != null && !$F{S1PrComment1}.equals(""))
+: ($F{S2PrComment1} != null && !$F{S2PrComment1}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<box topPadding="3" leftPadding="3"/>
+					<textElement markup="none">
+						<font isBold="true" isItalic="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Comments- " + $P{semesterString} + " Progress 1:"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement positionType="Float" x="0" y="24" width="572" height="24" uuid="aa0176f4-beeb-4269-884f-0815eb5f290e">
+						<printWhenExpression><![CDATA[$P{termNumber}.intValue() == 1
+? ($F{S1PrComment2} != null && !$F{S1PrComment2}.equals(""))
+: ($F{S2PrComment2} != null && !$F{S2PrComment2}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<box topPadding="3" leftPadding="4" bottomPadding="1">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement markup="styled"/>
+					<textFieldExpression><![CDATA["                                                                 "
++ ($P{termNumber}.intValue() == 1 ? $F{S1PrComment2} : $F{S2PrComment2})]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="24" width="185" height="24" uuid="a1ab623f-ca69-439a-bdc6-d412d76925ea">
+						<printWhenExpression><![CDATA[$P{termNumber}.intValue() == 1
+? ($F{S1PrComment2} != null && !$F{S1PrComment2}.equals(""))
+: ($F{S2PrComment2} != null && !$F{S2PrComment2}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<box topPadding="3" leftPadding="3"/>
+					<textElement markup="none">
+						<font isBold="true" isItalic="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Comments- " + $P{semesterString} + " Progress 2:"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Prevent">
+			<printWhenExpression><![CDATA[$F{criterion} != null]]></printWhenExpression>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="372" height="21" uuid="9398be50-4571-4ed0-9778-6138fb56f5e4"/>
+				<box topPadding="3" leftPadding="4" bottomPadding="3">
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="styled">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{criterion}.getComment()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="372" y="0" width="100" height="21" uuid="cac8e5aa-7ff5-4409-9904-2ae24c5ecc68"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{termNumber} == 1
+? $F{rubric_S1PrStrands1}
+: $F{rubric_S2PrStrands1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="472" y="0" width="100" height="21" uuid="27464423-0c47-4941-8cf1-74d8e9edcb1f"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{termNumber} == 1
+? $F{rubric_S1PrStrands2}
+: $F{rubric_S2PrStrands2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
